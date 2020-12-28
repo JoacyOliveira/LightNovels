@@ -1,0 +1,72 @@
+{% extends 'navbar.html' %}
+{% block main %}
+<div class="text-center" style="margin-top:40px"><a href="{% url 'adicionarnovel' %}" style="color: rgb(0,0,0);font-size: 20px;font-family: Bungee, cursive;">Adicionar novo item</a></div>
+    <div style="margin-top:40px;" class="row">
+        <div class="col">
+            <div class="table-responsive" style="padding-left: 25%;padding-right: 25%;">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Novel Name</th>
+                            <th>Status</th>
+                            <th>Chapter</th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for novel in novel %}
+                        <tr>
+                            <td>{{novel.name}}</td>
+                            <td>{{novel.status}}</td>
+                            <td>{{novel.chapter}}</td>
+                            <td>
+                                <div class="dropdown d-xl-flex" style="width: 95px;"><button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" style="background-color: rgb(0,0,0);">Options</button>
+                                    <div class="dropdown-menu" role="menu">
+                                        <a class="dropdown-item" role="presentation" href="{% url 'deletarnovel' novel.id %}">Remover</a>
+                                        <a class="dropdown-item" role="presentation" href="{% url 'alterarnovel' novel.id %}">Editar</a></div>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div style="width:100%;justify-content:center" class="pagination">
+        <ul class="pagination">
+        {% if novel.has_previous %}
+           <li class="page-item"><a class="page-link" href="?page=1" aria-label="Previous"><span aria-hidden="true">««</span></a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ novel.previous_page_number }}" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+
+
+            </ul>
+
+        {% endif %}
+
+        {% for num in novel.paginator.page_range %}
+            {% if novel.number == num %}
+        <li class="page-item"><a class="page-link" href="?page={{num}}"><strong>{{num}}</strong></a></li>
+            {% elif num > novel.number|add:'-3' and num < novel.number|add:'3' %}
+                <li class="page-item">{{num}}</li>
+
+            {% endif %}
+        {% endfor %}
+
+        {% if novel.has_next %}
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="?page={{novel.next_page_number}}" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+        <li class="page-item"><a class="page-link" href="?page={{novel.paginator.num_pages }}" aria-label="Next"><span aria-hidden="true">»»</span></a></li>
+
+        </ul>
+        {% endif %}
+
+
+
+
+
+
+
+    </div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'navbar.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block main %}
+
+<link rel="stylesheet" href="{% static 'css/user/Profile-Edit-Form.css' %}">
+
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div style="margin-top:10%;" class="container shadow-lg profile profile-view" id="profile">
+        <div class="row">
+            <div class="col-md-12 alert-col relative">
+                <div class="alert alert-info absolue center" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">
+                    </span>
+                    </button>
+                    <span>Profile save with success</span>
+                </div>
+            </div>
+        </div>
+            <div style="width:100%;">
+            <div class="form-row profile-row">
+                <div class="col-md-4 relative">
+                    <div class="avatar">
+                        <div class="avatar-bg center" style="background: url({{user.profile.image.url}}); margin-top: 50px;max-width: 200px;">
+                        </div>
+                    </div>
+                    {{ p_form.image|as_crispy_field }}
+                </div>
+                <div style="" class="col-md-8">
+                    <h1>Perfil</h1>
+                    <hr>
+                    <div class="form-row">
+                        <div class="col-sm-12 col-md-6 col-xl-12 offset-xl-0" style="width: 100%;">
+                            <div class="form-group">
+                                {{ u_form.username|as_crispy_field }}
+                        </div>
+                    </div>
+                        <div class="col-sm-12 col-md-6 col-xl-12 offset-xl-0" style="width: 100%;">
+                    <div class="form-group">
+                        {{ u_form.email|as_crispy_field }}
+                    </div>
+                    </div>
+                    <hr>
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <button class="btn btn-primary form-btn" type="submit">Salvar Mudanças</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+        </div>
+    </div>
+    </form>
+
+{% endblock %}
