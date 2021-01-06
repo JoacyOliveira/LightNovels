@@ -1,7 +1,7 @@
 # Django Estante Virtual
 Estante virtual - Projeto utilizado para aprendizado
 
-![image](https://prnt.sc/whkhci)
+![NovelFoto1](/uploads/44dba61b2610b2d6958a02e2cfe4e7f0/NovelFoto1.png)
 
 ## Instalação
 
