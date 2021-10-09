@@ -9,7 +9,7 @@ Estante virtual - Projeto utilizado para aprendizado
 
 ### Clone o projeto
 ```
-git clone https://gitlab.com/AiZnn/lightnovels.git
+git clone https://github.com/JoacyOliveira/LightNovels.git
 cd LightNovels 
 ```
 
